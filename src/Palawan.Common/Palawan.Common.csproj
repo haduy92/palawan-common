@@ -6,6 +6,7 @@
 		<Version>1.0.0</Version>
 		<Authors>Davis</Authors>
 		<Company>Palawan</Company>
+		<RepositoryURL>https://github.com/haduy92/palawan-common.git</RepositoryURL>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
 
