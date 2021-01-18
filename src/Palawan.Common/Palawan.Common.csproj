@@ -3,15 +3,18 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<PackageId>Palawan.Common</PackageId>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
 		<Authors>Davis</Authors>
 		<Company>Palawan</Company>
 		<RepositoryURL>https://github.com/haduy92/palawan-common.git</RepositoryURL>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<Description>Useful methods for developing ASP.NET Core WebApi with EntityFramework</Description>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<RepositoryType>Git</RepositoryType>
+		<CopyRight>©2021 Palawan Corporation</CopyRight>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="LICENSE" Pack="true" PackagePath="LICENSE"/>
+		<None Include="LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
 	</ItemGroup>
 
 	<ItemGroup>
