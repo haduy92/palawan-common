@@ -33,7 +33,7 @@ namespace Palawan.Common.Extensions
 		/// </summary>
 		/// <param name="source">The source of Stream.</param>
 		/// <returns>Byte Array<returns>
-		public static byte[] ToByteArray(this Stream source)
+		public static byte[] ToBytes(this Stream source)
 		{
 			using (var memoryStream = new MemoryStream())
 			{
