@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<PackageId>Palawan.Common</PackageId>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 		<Authors>Davis</Authors>
 		<Company>Palawan</Company>
 		<RepositoryURL>https://github.com/haduy92/palawan-common.git</RepositoryURL>
@@ -14,7 +14,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)" />
+		<None Include="../../LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)" />
 	</ItemGroup>
 
 	<ItemGroup>
