@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using Palawan.Common.Extensions;
-using Newtonsoft.Json;
+using Palawan.Common.Json;
 using Serilog;
 
 namespace Palawan.Common.Communications.Http
@@ -20,16 +20,6 @@ namespace Palawan.Common.Communications.Http
 	{
 		private readonly HttpClient _httpClient;
 		private readonly ILogger _logger;
-
-		private static readonly JsonSerializerSettings IgnoreNullJsonSerializerSettings = new JsonSerializerSettings
-		{
-			NullValueHandling = NullValueHandling.Ignore
-		};
-
-		private static readonly JsonSerializerSettings IncludeNullJsonSerializerSettings = new JsonSerializerSettings
-		{
-			NullValueHandling = NullValueHandling.Include
-		};
 
 		public HttpClientWrapper(HttpClient httpClient, ILogger logger)
 		{
@@ -55,8 +45,9 @@ namespace Palawan.Common.Communications.Http
 		{
 			var request = CreateJsonRequest(HttpMethod.Get, uri, authConfig, headers: headers);
 			var response = await SendAsync(request, cancellationToken ?? CancellationToken.None, HttpCompletionOption.ResponseHeadersRead);
+			var responseString = await response.Content.ReadAsStringAsync();
 
-			return JsonConvert.DeserializeObject<TRequest>(await response.Content.ReadAsStringAsync());
+			return responseString.FromJsonString<TRequest>();
 		}
 
 		public async Task<Stream> GetStreamAsync(string uri
@@ -91,7 +82,8 @@ namespace Palawan.Common.Communications.Http
 			, CancellationToken? cancellationToken = null)
 		{
 			var response = await PostAsync(uri, requestContent, authConfig, headers, cancellationToken);
-			return JsonConvert.DeserializeObject<TResponse>(await response.Content.ReadAsStringAsync());
+			var responseString = await response.Content.ReadAsStringAsync();
+			return responseString.FromJsonString<TResponse>();
 		}
 
 		public async Task<HttpResponseMessage> PostAsJsonAsync<TRequest>(string uri
@@ -178,7 +170,8 @@ namespace Palawan.Common.Communications.Http
 			, CancellationToken? cancellationToken = null)
 		{
 			var response = await DeleteAsync(uri, authConfig, headers, cancellationToken);
-			return JsonConvert.DeserializeObject<TResponse>(await response.Content.ReadAsStringAsync());
+			var responseString = await response.Content.ReadAsStringAsync();
+			return responseString.FromJsonString<TResponse>();
 		}
 
 		#endregion
@@ -202,7 +195,8 @@ namespace Palawan.Common.Communications.Http
 			, CancellationToken? cancellationToken = null)
 		{
 			var response = await PutAsync(uri, requestContent, authConfig, headers, cancellationToken);
-			return JsonConvert.DeserializeObject<TResponse>(await response.Content.ReadAsStringAsync());
+			var responseString = await response.Content.ReadAsStringAsync();
+			return responseString.FromJsonString<TResponse>();
 		}
 
 		public async Task<HttpResponseMessage> PutAsJsonAsync<TResquest>(string uri
@@ -248,7 +242,8 @@ namespace Palawan.Common.Communications.Http
 			, CancellationToken? cancellationToken = null)
 		{
 			var response = await PatchAsync(uri, requestContent, authConfig, headers, cancellationToken);
-			return JsonConvert.DeserializeObject<TResponse>(await response.Content.ReadAsStringAsync());
+			var responseString = await response.Content.ReadAsStringAsync();
+			return responseString.FromJsonString<TResponse>();
 		}
 
 		public async Task<HttpResponseMessage> PatchAsJsonAsync<TResquest>(string uri
@@ -279,10 +274,7 @@ namespace Palawan.Common.Communications.Http
 
 		private StringContent SerializeObjectAsJson<TRequest>(TRequest objectContent, bool ignoreNull)
 		{
-			const string JsonContent = "application/json";
-			var json = JsonConvert.SerializeObject(objectContent, Formatting.None, ignoreNull ?
-				IgnoreNullJsonSerializerSettings : IncludeNullJsonSerializerSettings);
-			return new StringContent(json, Encoding.UTF8, JsonContent);
+			return new StringContent(objectContent.ToJsonString(true), Encoding.UTF8, "application/json");
 		}
 
 		private HttpRequestMessage CreateJsonRequest(HttpMethod method
