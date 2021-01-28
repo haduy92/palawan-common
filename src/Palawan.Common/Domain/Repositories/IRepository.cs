@@ -58,6 +58,8 @@ namespace Palawan.Common.Domain.Repositories
 		/// Gets an entity with given given predicate or null if not found.
 		/// </summary>
 		/// <param name="predicate">Predicate to filter entities</param>
+		/// <param name="includes">Navigation properties to include into result</param>
+		/// <param name="disableTracking">Prevent EF from tracking changes of entities</param>
 		TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate
 			, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null
 			, bool disableTracking = true);
@@ -66,6 +68,8 @@ namespace Palawan.Common.Domain.Repositories
 		/// Gets an entity with given given predicate or null if not found.
 		/// </summary>
 		/// <param name="predicate">Predicate to filter entities</param>
+		/// <param name="includes">Navigation properties to include into result</param>
+		/// <param name="disableTracking">Prevent EF from tracking changes of entities</param>
 		Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate
 			, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null
 			, bool disableTracking = true);

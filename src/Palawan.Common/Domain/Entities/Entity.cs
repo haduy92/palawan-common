@@ -28,7 +28,7 @@ namespace Palawan.Common.Domain.Entities
 				return true;
 			}
 
-			// Workaround for EF Core since it sets int/long to min value when attaching to dbcontext
+			// Workaround for EF Core since it sets int/long to min value when attaching to dbContext
 			if (typeof(TPrimaryKey) == typeof(int))
 			{
 				return Convert.ToInt32(Id) <= 0;
