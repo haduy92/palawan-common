@@ -34,7 +34,7 @@ namespace Palawan.Common.Domain.Repositories
 			return query.ToList();
 		}
 
-		public virtual Task<IEnumerable<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate = null
+		public virtual async Task<IEnumerable<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate = null
 			, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBys = null
 			, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null
 			, int? pageIndex = null
@@ -42,7 +42,7 @@ namespace Palawan.Common.Domain.Repositories
 			, bool disableTracking = true)
 		{
 			var query = BuildQuery(predicate, orderBys, includes, pageIndex, pageSize, disableTracking);
-			return Task.FromResult(query.AsEnumerable());
+			return await ExecuteQuery(query);
 		}
 
 		public virtual TEntity Get(TPrimaryKey keyValue
@@ -170,6 +170,11 @@ namespace Palawan.Common.Domain.Repositories
 			}
 
 			return query;
+		}
+
+		protected virtual async Task<IEnumerable<TEntity>> ExecuteQuery(IQueryable<TEntity> query)
+		{
+			return await query.ToListAsync();
 		}
 	}
 }
