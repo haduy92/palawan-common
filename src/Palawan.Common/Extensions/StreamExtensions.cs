@@ -32,7 +32,7 @@ namespace Palawan.Common.Extensions
 		/// Convert a Stream to file.
 		/// </summary>
 		/// <param name="source">The source of Stream.</param>
-		/// <returns>Byte Array<returns>
+		/// <returns>Byte Array</returns>
 		public static byte[] ToBytes(this Stream source)
 		{
 			using (var memoryStream = new MemoryStream())

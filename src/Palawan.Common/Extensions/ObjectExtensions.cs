@@ -89,10 +89,5 @@ namespace Palawan.Common.Extensions
 				}
 			}
 		}
-
-		public static bool IsAssignableFrom<T>(this T obj, Type type)
-		{
-			return type.IsAssignableFrom(typeof(T).Ge‌​tTypeInfo());
-		}
 	}
 }

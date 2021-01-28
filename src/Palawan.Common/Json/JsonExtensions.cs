@@ -4,6 +4,9 @@ using Newtonsoft.Json.Serialization;
 
 namespace Palawan.Common.Json
 {
+	/// <summary>
+	/// Extension methods for handling JSON.
+	/// </summary>
 	public static class JsonExtensions
 	{
 		/// <summary>
