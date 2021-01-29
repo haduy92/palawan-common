@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<PackageId>Palawan.Common</PackageId>
-		<Version>1.0.3</Version>
+		<Version>1.0.4</Version>
 		<Authors>Davis</Authors>
 		<Company>Palawan</Company>
 		<RepositoryURL>https://github.com/haduy92/palawan-common.git</RepositoryURL>
