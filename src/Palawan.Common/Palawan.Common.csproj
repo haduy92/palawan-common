@@ -12,6 +12,7 @@
 		<RepositoryType>Git</RepositoryType>
 		<CopyRight>©2021 Palawan Corporation</CopyRight>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<NoWarn>$(NoWarn);1591</NoWarn>
 	</PropertyGroup>
 

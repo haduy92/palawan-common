@@ -27,7 +27,7 @@ namespace Palawan.Common.Extensions
 		}
 
 		/// <summary>
-		/// indicates whether this string is null, empty, or consists only of white-space characters.
+		/// Indicates whether this string is null, empty, or consists only of white-space characters.
 		/// </summary>
 		public static bool IsNullOrWhiteSpace(this string str)
 		{
