@@ -45,8 +45,8 @@ namespace Palawan.Common.Domain.Entities
 		/// <summary>
 		/// Creates a new <see cref="EntityNotFoundException"/> object.
 		/// </summary>
-		public EntityNotFoundException(string typeName, string keyName, object key)
-			: base($"There is no such an entity. Entity type: {typeName}, key name: {keyName}, key value: {key}")
+		public EntityNotFoundException(string entityTypeName, string keyName, object keyValue)
+			: base($"There is no such an entity. Entity type: {entityTypeName}, key name: {keyName}, key value: {keyValue}")
 		{ }
 
 		/// <summary>
