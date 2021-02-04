@@ -35,6 +35,14 @@ namespace Palawan.Common.Extensions
 		}
 
 		/// <summary>
+		/// Indicates whether this string is not null, empty, or consists only of white-space characters.
+		/// </summary>
+		public static bool HasValue(this string str)
+		{
+			return !IsNullOrEmpty(str) && !IsNullOrWhiteSpace(str);
+		}
+
+		/// <summary>
 		/// Uses string.Split method to split given string by given separator.
 		/// </summary>
 		public static string[] Split(this string str, string separator)
